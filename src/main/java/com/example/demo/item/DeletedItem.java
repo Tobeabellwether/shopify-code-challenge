@@ -1,10 +1,10 @@
 package com.example.demo.item;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.time.LocalDate;
 
-
-public class DeletedItem extends Item{
+@Entity
+public class DeletedItem extends Item {
 
     private LocalDate deletionDate;
     private String deletionComment;
@@ -12,24 +12,19 @@ public class DeletedItem extends Item{
     public DeletedItem() {
     }
 
-    public DeletedItem(String type, String brand, String model, LocalDate checkInDate,
-                       LocalDate deletionDate, String deletionComment) {
-        super(type, brand, model, checkInDate);
-
-    }
-
-    public DeletedItem(Long id, String type, String brand, String model, LocalDate checkInDate,
-                       LocalDate deletionDate, String deletionComment) {
-        super(id, type, brand, model, checkInDate);
+    public DeletedItem(Item item, String deletionComment) {
+        super(item.getId(), item.getType(), item.getBrand(), item.getModel(), item.getCheckInDate(), 1);
+        this.deletionDate = LocalDate.now();
+        this.deletionComment = deletionComment;
     }
 
     public LocalDate getDeletionDate() {
         return deletionDate;
     }
 
-    public void setDeletionDate(LocalDate deletionDate) {
-        this.deletionDate = deletionDate;
-    }
+//    public void setDeletionDate(LocalDate deletionDate) {
+//        this.deletionDate = deletionDate;
+//    }
 
     public String getDeletionComment() {
         return deletionComment;
@@ -38,6 +33,5 @@ public class DeletedItem extends Item{
     public void setDeletionComment(String deletionComment) {
         this.deletionComment = deletionComment;
     }
-
 
 }

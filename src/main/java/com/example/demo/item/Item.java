@@ -4,33 +4,19 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table
+@Table(name = "items")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Item {
     @Id
-    @SequenceGenerator(
-            name = "item_sequence",
-            sequenceName = "item_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "item_sequence"
-    )
-
     private Long id;
     private String type;
     private String brand;
     private String model;
     private LocalDate checkInDate;
 
-    public Item() {
-    }
+    private int status;
 
-    public Item(String type, String brand, String model, LocalDate checkInDate) {
-        this.type = type;
-        this.brand = brand;
-        this.model = model;
-        this.checkInDate = checkInDate;
+    public Item() {
     }
 
     public Item(Long id, String type, String brand, String model, LocalDate checkInDate) {
@@ -39,10 +25,28 @@ public class Item {
         this.brand = brand;
         this.model = model;
         this.checkInDate = checkInDate;
+        this.status = 0;
+    }
+
+    public Item(Long id, String type, String brand, String model, LocalDate checkInDate, int status) {
+        this.id = id;
+        this.type = type;
+        this.brand = brand;
+        this.model = model;
+        this.checkInDate = checkInDate;
+        this.status = status;
     }
 
     public Long getId() {
         return id;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public void setId(Long id) {

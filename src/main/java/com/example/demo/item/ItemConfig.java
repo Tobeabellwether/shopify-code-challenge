@@ -13,11 +13,11 @@ public class ItemConfig {
     @Bean
     CommandLineRunner commandLineRunner(ItemRepository itemRepository) {
         return args -> itemRepository.saveAll(Arrays.asList(
-                new Item("Laptop", "Lenovo", "A1", LocalDate.of(2022, Month.JANUARY, 1)),
-                new Item("Laptop", "Lenovo", "A1", LocalDate.of(2022, Month.JANUARY, 1)),
-                new Item("Laptop", "Lenovo", "A1", LocalDate.of(2022, Month.JANUARY, 1)),
-                new Item("TV", "Samsung", "B3", LocalDate.of(2022, Month.FEBRUARY, 1)),
-                new Item("TV", "Samsung", "B3", LocalDate.of(2022, Month.FEBRUARY, 1)),
-                new Item("Mobile phone", "Apple", "C1", LocalDate.of(2022, Month.MARCH, 1))));
+                new Item(1L, "Laptop", "Lenovo", "A1", LocalDate.of(2022, Month.JANUARY, 1)),
+                new Item(2L,"Laptop", "Lenovo", "A1", LocalDate.of(2022, Month.JANUARY, 1)),
+                new Item(3L,"Laptop", "Lenovo", "A1", LocalDate.of(2022, Month.JANUARY, 1)),
+                new Item(4L,"TV", "Samsung", "B3", LocalDate.of(2022, Month.FEBRUARY, 1)),
+                new Item(5L,"TV", "Samsung", "B3", LocalDate.of(2022, Month.FEBRUARY, 1)),
+                new Item(6L,"Mobile phone", "Apple", "C1", LocalDate.of(2022, Month.MARCH, 1))));
     }
 }

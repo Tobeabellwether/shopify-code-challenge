@@ -27,19 +27,29 @@ public class ItemController {
         return itemService.getAllItems();
     }
 
+    @GetMapping(path = "deleted")
+    public List<Item> getAllDeletedItems(){
+        return itemService.getAllDeletedItems();
+    }
     @PostMapping()
     public void addItems(@RequestBody List<Item> items) {
         itemService.addItems(items);
     }
 
+    @PostMapping(path = "{ids}")
+    public void unDeleteItems(@PathVariable("ids") List<Long> ids) {
+        itemService.unDeleteItems(ids);
+    }
+
     @DeleteMapping(path = "{ids}")
-    public void deleteItems(@PathVariable("ids") List<Long> ids) {
-        itemService.deleteItems(ids);
+    public void deleteItems(@PathVariable("ids") List<Long> ids,
+                            @RequestParam(required = false) String deletionComment) {
+        itemService.deleteItems(ids, deletionComment);
     }
 
     @DeleteMapping(path = "all")
-    public void deleteAllItems() {
-        itemService.deleteAllItems();
+    public void deleteAllItems(@RequestParam(required = false) String deletionComment) {
+        itemService.deleteAllItems(deletionComment);
     }
 
     @PutMapping(path = "{id}")
