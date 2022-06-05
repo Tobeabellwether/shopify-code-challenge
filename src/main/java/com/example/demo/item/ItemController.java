@@ -2,7 +2,9 @@ package com.example.demo.item;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -18,20 +20,31 @@ public class ItemController {
     }
 
     @GetMapping(path = "{ids}")
-    public List<Item> getItems(@PathVariable("ids") List<Long> ids){
-        return itemService.getItems(ids);
+    public ModelAndView getItems(@PathVariable("ids") List<Long> ids) {
+        ModelAndView mav = new ModelAndView("getItems");
+        List<Item> items = itemService.getItems(ids);
+        mav.addObject("items", items);
+        return mav;
     }
 
     @GetMapping(path = "all")
-    public List<Item> getAllItems(){
-        return itemService.getAllItems();
+    public ModelAndView getAllItems() {
+        ModelAndView mav = new ModelAndView("getItems");
+        List<Item> items = itemService.getAllItems();
+        mav.addObject("items", items);
+        return mav;
     }
 
     @GetMapping(path = "deleted")
-    public List<Item> getAllDeletedItems(){
-        return itemService.getAllDeletedItems();
+    public ModelAndView getAllDeletedItems() {
+        ModelAndView mav = new ModelAndView("getDeletedItems");
+        List<Item> items = itemService.getAllDeletedItems();
+        mav.addObject("items", items);
+        return mav;
     }
-    @PostMapping()
+
+
+    @PostMapping
     public void addItems(@RequestBody List<Item> items) {
         itemService.addItems(items);
     }

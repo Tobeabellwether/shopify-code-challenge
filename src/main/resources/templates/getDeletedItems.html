@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div align="center">
+  <h1>Inventory Tracking System </h1>
+  <h2> Item List </h2>
+  <table border="1">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Type</th>
+      <th>Brand</th>
+      <th>Model</th>
+      <th>CheckInDate</th>
+      <th>Status</th>
+      <th>DeletionDate</th>
+      <th>DeletionComment</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item: ${items}">
+      <td th:text="${item.id}"></td>
+      <td th:text="${item.type}"></td>
+      <td th:text="${item.brand}"></td>
+      <td th:text="${item.model}"></td>
+      <td th:text="${item.checkInDate}"></td>
+      <td th:text="${item.status}"></td>
+      <td th:text="${item.deletionDate}"></td>
+      <td th:text="${item.deletionComment}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>
