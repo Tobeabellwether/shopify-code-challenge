@@ -9,7 +9,10 @@
   <h1>Inventory Tracking System</h1>
   <h2> Update Item </h2>
   <hr/>
-  <form th:action="add" th:object="${item}" method="POST">
+  <form th:action="update" th:object="${item}" method="POST">
+    <br>
+    <input type="hidden" th:field="*{id}" />
+    <br>
     <input type="text" th:field="*{type}" />
     <br>
     <input type="text" th:field="*{brand}" />
@@ -18,7 +21,7 @@
     <br>
     <input type="date" th:field="*{checkInDate}" />
     <br>
-    <button type="submit" value="add">Save</button>
+    <button type="submit" value="update">Update</button>
   </form>
   <hr/>
   <input type="button" value= "Back" onclick="location.href='/'"/>

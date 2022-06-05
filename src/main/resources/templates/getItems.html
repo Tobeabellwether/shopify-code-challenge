@@ -30,6 +30,17 @@
             <td th:text="${item.status}"></td>
             <td>
                 <a th:href="@{/api/item/update(id=${item.id})}">Update</a>
+                <a th:href="@{/api/item/delete(id=${item.id},deletionComment=${item.id})}">Delete</a>
+
+<!--                <button type="submit" value="${comment}">Save</button>-->
+<!--            <script type="text/javascript">-->
+<!--                function deleteItem(){-->
+<!--                    var page=document.getElementById('in').value; // value of input box-->
+<!--                    location.href='api/item/'+page; // redirect to new url-->
+<!--                }-->
+<!--            </script>-->
+<!--                <input type="button" value= "Delete" onclick="deleteItem()"/>-->
+<!--                <input type="text" id="in" placeholder="Deletion Comment"/>-->
             </td>
         </tr>
         </tbody>

@@ -1,5 +1,6 @@
 package com.example.demo.item;
 
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -81,23 +82,29 @@ public class ItemService {
     }
 
     @Transactional
-    public void updateItem(Long id, String type, String brand, String model, LocalDate checkInDate) {
-        Item item = itemRepository.findById(id)
+    public void updateItem(Item item) {
+        Long id = item.getId();
+        String type = item.getType();
+        String model = item.getModel();
+        String brand = item.getBrand();
+        LocalDate checkInDate = item.getCheckInDate();
+
+        Item oldItem = itemRepository.findById(id)
                 .orElseThrow(() -> new IllegalStateException("item with id " + id + " does not exists"));
 
         BiPredicate<String, String> shouldUpdate = (oldAttribute, newAttribute)
                 -> newAttribute != null && newAttribute.length() > 0 && !oldAttribute.equals(newAttribute);
 
-        if (shouldUpdate.test(item.getType(), type)) item.setType(type);
-        if (shouldUpdate.test(item.getModel(), model)) item.setModel(model);
-        if (shouldUpdate.test(item.getBrand(), brand)) item.setBrand(brand);
-        if (checkInDate != null && !item.getCheckInDate().equals(checkInDate)) item.setCheckInDate(checkInDate);
+        if (shouldUpdate.test(oldItem.getType(), type)) oldItem.setType(type);
+        if (shouldUpdate.test(oldItem.getModel(), model)) oldItem.setModel(model);
+        if (shouldUpdate.test(oldItem.getBrand(), brand)) oldItem.setBrand(brand);
+        if (checkInDate != null && !oldItem.getCheckInDate().equals(checkInDate)) oldItem.setCheckInDate(checkInDate);
     }
 
     @Transactional
     public void updateItems(List<Item> items) {
         for (Item item: items)
-            updateItem(item.getId(), item.getType(), item.getBrand(), item.getModel(), item.getCheckInDate());
+            updateItem(item);
     }
 
 }
