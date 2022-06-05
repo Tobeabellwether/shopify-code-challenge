@@ -1,10 +1,11 @@
 package com.example.demo.item;
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -19,7 +20,7 @@ public class ItemController {
         this.itemService = itemService;
     }
 
-    @GetMapping(path = "{ids}")
+    @GetMapping("{ids}")
     public ModelAndView getItems(@PathVariable("ids") List<Long> ids) {
         ModelAndView mav = new ModelAndView("getItems");
         List<Item> items = itemService.getItems(ids);
@@ -27,7 +28,7 @@ public class ItemController {
         return mav;
     }
 
-    @GetMapping(path = "all")
+    @GetMapping("all")
     public ModelAndView getAllItems() {
         ModelAndView mav = new ModelAndView("getItems");
         List<Item> items = itemService.getAllItems();
@@ -35,7 +36,7 @@ public class ItemController {
         return mav;
     }
 
-    @GetMapping(path = "deleted")
+    @GetMapping("deleted")
     public ModelAndView getAllDeletedItems() {
         ModelAndView mav = new ModelAndView("getDeletedItems");
         List<Item> items = itemService.getAllDeletedItems();
@@ -43,11 +44,23 @@ public class ItemController {
         return mav;
     }
 
-
-    @PostMapping
-    public void addItems(@RequestBody List<Item> items) {
-        itemService.addItems(items);
+    @GetMapping("add")
+    public ModelAndView addItem() {
+        ModelAndView mav = new ModelAndView("addItem");
+        mav.addObject("item", new Item());
+        return mav;
     }
+
+    @PostMapping("add")
+    public RedirectView addItem(@ModelAttribute Item item) {
+        itemService.addItem(item);
+        return new RedirectView("all");
+    }
+
+//    @PostMapping
+//    public void addItems(@RequestBody List<Item> items) {
+//        itemService.addItems(items);
+//    }
 
     @PostMapping(path = "{ids}")
     public void unDeleteItems(@PathVariable("ids") List<Long> ids) {

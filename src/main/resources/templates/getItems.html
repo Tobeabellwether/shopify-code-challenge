@@ -17,6 +17,7 @@
             <th>Model</th>
             <th>CheckInDate</th>
             <th>Status</th>
+            <th>Action</th>
         </tr>
         </thead>
         <tbody>
@@ -27,9 +28,13 @@
             <td th:text="${item.model}"></td>
             <td th:text="${item.checkInDate}"></td>
             <td th:text="${item.status}"></td>
+            <td>
+                <a th:href="@{/api/item/update(id=${item.id})}">Update</a>
+            </td>
         </tr>
         </tbody>
     </table>
+    <input type="button" value= "Back" onclick="location.href='/'"/>
 </div>
 </body>
 </html>

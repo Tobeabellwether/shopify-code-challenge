@@ -2,33 +2,28 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Inventory Tracking System</title>
 </head>
 <body>
 <div align="center">
-    <h1> Item List </h1>
-    <table border="1">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Type</th>
-            <th>Brand</th>
-            <th>Model</th>
-            <th>CheckInDate</th>
-            <th>Status</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="item: ${items}">
-            <td th:text="${item.id}"></td>
-            <td th:text="${item.type}"></td>
-            <td th:text="${item.brand}"></td>
-            <td th:text="${item.model}"></td>
-            <td th:text="${item.checkInDate}"></td>
-            <td th:text="${item.status}"></td>
-        </tr>
-        </tbody>
-    </table>
+   <h1>Inventory Tracking System</h1>
+    <h2> Add Item </h2>
+    <hr/>
+        <form th:action="add" th:object="${item}" method="POST">
+            <input type="text" th:field="*{id}" placeholder="Enter name"/>
+            <br>
+            <input type="text" th:field="*{type}" placeholder="Enter type"/>
+            <br>
+            <input type="text" th:field="*{brand}" placeholder="Enter brand"/>
+            <br>
+            <input type="text" th:field="*{model}" placeholder="Enter model"/>
+            <br>
+            <input type="date" th:field="*{checkInDate}" placeholder="Enter checkInDate"/>
+            <br>
+            <button type="submit" value="add">Save</button>
+        </form>
+    <hr/>
+    <input type="button" value= "Back" onclick="location.href='/'"/>
 </div>
 </body>
 </html>

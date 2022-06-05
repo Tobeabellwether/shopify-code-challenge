@@ -1,5 +1,7 @@
 package com.example.demo.item;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -12,6 +14,8 @@ public class Item {
     private String type;
     private String brand;
     private String model;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate checkInDate;
 
     private int status;

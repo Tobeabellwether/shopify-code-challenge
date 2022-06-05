@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Inventory Tracking System</title>
+</head>
+<body>
+<div align="center">
+  <h1>Inventory Tracking System</h1>
+  <h2> Update Item </h2>
+  <hr/>
+  <form th:action="add" th:object="${item}" method="POST">
+    <input type="text" th:field="*{type}" />
+    <br>
+    <input type="text" th:field="*{brand}" />
+    <br>
+    <input type="text" th:field="*{model}" />
+    <br>
+    <input type="date" th:field="*{checkInDate}" />
+    <br>
+    <button type="submit" value="add">Save</button>
+  </form>
+  <hr/>
+  <input type="button" value= "Back" onclick="location.href='/'"/>
+</div>
+</body>
+</html>
