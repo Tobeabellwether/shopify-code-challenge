@@ -16,7 +16,6 @@
       <th>Brand</th>
       <th>Model</th>
       <th>CheckInDate</th>
-      <th>Status</th>
       <th>DeletionDate</th>
       <th>DeletionComment</th>
       <th>Action</th>
@@ -29,12 +28,11 @@
       <td th:text="${item.brand}"></td>
       <td th:text="${item.model}"></td>
       <td th:text="${item.checkInDate}"></td>
-      <td th:text="${item.status}"></td>
       <td th:text="${item.deletionDate}"></td>
       <td th:text="${item.deletionComment}"></td>
       <th>
-        <a th:href="@{/api/item/delete(id=${item.id}}">DeleteForever</a>
-        <a th:href="@{/api/item/undelete(id=${item.id})} ">UnDelete</a>
+        <a th:href="@{/api/item/delete(id=${item.id})}">DeleteForever</a>
+        <a th:href="@{/api/item/undelete(id=${item.id})}">UnDelete</a>
       </th>
     </tr>
     </tbody>

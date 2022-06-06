@@ -1,6 +1,5 @@
 package com.example.demo.item;
 
-import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,11 +30,11 @@ public class ItemService {
     }
 
     public List<Item> getAllItems() {
-        return itemRepository.findByStatus(0);
+        return itemRepository.findByStatusOrderById(0);
     }
 
     public List<Item> getAllDeletedItems() {
-        return itemRepository.findByStatus(1);
+        return itemRepository.findByStatusOrderById(1);
     }
 
     public void addItem(Item item) {

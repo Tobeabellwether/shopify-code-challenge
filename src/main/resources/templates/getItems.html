@@ -16,7 +16,6 @@
             <th>Brand</th>
             <th>Model</th>
             <th>CheckInDate</th>
-            <th>Status</th>
             <th>Action</th>
         </tr>
         </thead>
@@ -27,20 +26,22 @@
             <td th:text="${item.brand}"></td>
             <td th:text="${item.model}"></td>
             <td th:text="${item.checkInDate}"></td>
-            <td th:text="${item.status}"></td>
             <td>
-                <a th:href="@{/api/item/update(id=${item.id})}">Update</a>
-                <a th:href="@{/api/item/delete(id=${item.id},deletionComment=${item.id})}">Delete</a>
-
-<!--                <button type="submit" value="${comment}">Save</button>-->
-<!--            <script type="text/javascript">-->
-<!--                function deleteItem(){-->
-<!--                    var page=document.getElementById('in').value; // value of input box-->
-<!--                    location.href='api/item/'+page; // redirect to new url-->
-<!--                }-->
-<!--            </script>-->
-<!--                <input type="button" value= "Delete" onclick="deleteItem()"/>-->
-<!--                <input type="text" id="in" placeholder="Deletion Comment"/>-->
+            <script type="text/javascript">
+                function updateItem(){
+                    var id=document.getElementById('id').value;
+                    location.href='/api/item/update?id='+id;
+                }
+                function deleteItem(){
+                    var id=document.getElementById('id').value;
+                    var comment=document.getElementById('comment').value;
+                    location.href='/api/item/delete?id='+id+'&deletionComment='+comment;
+                }
+            </script>
+                <input type="button" value= "Update" onclick="updateItem()"/>
+                <input type="button" value= "Delete" onclick="deleteItem()"/>
+                <input type="hidden" id="id" th:value = "${item.id}"/>
+                <input type="text" id="comment" placeholder="Deletion Comment"/>
             </td>
         </tr>
         </tbody>

@@ -9,16 +9,19 @@
     <h1>Inventory Tracking System </h1>
     <script type="text/javascript">
     function getItems(){
-        var page=document.getElementById('in').value; // value of input box
-        location.href='api/item/'+page; // redirect to new url
+        var num=document.getElementById('in').value;
+        location.href='api/item/'+num;
     }
     </script>
-    <input type="text" id="in" placeholder="1 or 1,2... or all or deleted"/>
+    <input type="text" id="in" placeholder="Enter 1 or 1,2,... "/>
     <br>
     <input type="button" value= "Get Items" onclick="getItems()"/>
     <br>
+    <br>
     <input type="button" value= "Add Item" onclick="location.href='/api/item/add'"/>
-
+    <br>
+    <br>
+    <input type="button" value= "Recycle Bin" onclick="location.href='/api/item/deleted'"/>
 </div>
 </body>
 </html>

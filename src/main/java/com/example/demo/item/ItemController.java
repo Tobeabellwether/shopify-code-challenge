@@ -25,7 +25,7 @@ public class ItemController {
         return mav;
     }
 
-    @GetMapping("all")
+    @GetMapping("")
     public ModelAndView getAllItems() {
         ModelAndView mav = new ModelAndView("getItems");
         List<Item> items = itemService.getAllItems();
@@ -50,7 +50,7 @@ public class ItemController {
     @PostMapping("add")
     public RedirectView addItem(@ModelAttribute Item item) {
         itemService.addItem(item);
-        return new RedirectView("all");
+        return new RedirectView("");
     }
 
     @GetMapping("update")
@@ -64,20 +64,20 @@ public class ItemController {
     @PostMapping("update")
     public RedirectView updateItem(@ModelAttribute Item item) {
         itemService.updateItem(item);
-        return new RedirectView("all");
+        return new RedirectView("");
     }
 
     @GetMapping("delete")
     public RedirectView deleteItem(@RequestParam Long id,
-                                   @RequestParam String deletionComment) {
+                                   @RequestParam(required = false) String deletionComment) {
         itemService.deleteItem(id, deletionComment);
-        return new RedirectView("all");
+        return new RedirectView("deleted");
     }
 
     @GetMapping("undelete")
     public RedirectView undeleteItem(@RequestParam Long id) {
         itemService.undeleteItem(id);
-        return new RedirectView("all");
+        return new RedirectView("");
     }
 
 
@@ -98,7 +98,7 @@ public class ItemController {
 //        itemService.deleteItems(ids, deletionComment);
 //    }
 //
-//    @DeleteMapping(path = "all")
+//    @DeleteMapping(path = "")
 //    public void deleteAllItems(@RequestParam(required = false) String deletionComment) {
 //        itemService.deleteAllItems(deletionComment);
 //    }
