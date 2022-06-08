@@ -77,7 +77,7 @@ public class ItemController {
     @GetMapping("undelete")
     public RedirectView undeleteItem(@RequestParam Long id) {
         itemService.undeleteItem(id);
-        return new RedirectView("");
+        return new RedirectView("deleted");
     }
 
 

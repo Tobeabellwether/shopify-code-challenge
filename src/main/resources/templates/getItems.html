@@ -19,6 +19,7 @@
             <th>Action</th>
         </tr>
         </thead>
+        <input type="text" id="comment" placeholder="Deletion Comment"/>
         <tbody>
         <tr th:each="item: ${items}">
             <td th:text="${item.id}"></td>
@@ -27,26 +28,22 @@
             <td th:text="${item.model}"></td>
             <td th:text="${item.checkInDate}"></td>
             <td>
-            <script type="text/javascript">
-                function updateItem(){
-                    var id=document.getElementById('id').value;
+                <script type="text/javascript">
+                function updateItem(id){
                     location.href='/api/item/update?id='+id;
                 }
-                function deleteItem(){
-                    var id=document.getElementById('id').value;
+                function deleteItem(id){
                     var comment=document.getElementById('comment').value;
                     location.href='/api/item/delete?id='+id+'&deletionComment='+comment;
                 }
             </script>
-                <input type="button" value= "Update" onclick="updateItem()"/>
-                <input type="button" value= "Delete" onclick="deleteItem()"/>
-                <input type="hidden" id="id" th:value = "${item.id}"/>
-                <input type="text" id="comment" placeholder="Deletion Comment"/>
+                <button th:onclick="javascript:updateItem([[${item.id}]])">Update</button>
+                <button th:onclick="javascript:deleteItem([[${item.id}]])">Delete</button>
             </td>
         </tr>
         </tbody>
     </table>
-    <input type="button" value= "Back" onclick="location.href='/'"/>
+    <input type="button" value= "Home" onclick="location.href='/'"/>
 </div>
 </body>
 </html>
