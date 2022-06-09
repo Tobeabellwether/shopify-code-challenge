@@ -1,2 +1,3 @@
 # Shopify Code Challenge
-<img width="600" alt="image" src="https://user-images.githubusercontent.com/24925361/172837182-0a3d4df6-f2df-4b98-b341-34aad46632cd.png">
+<img width="600" alt="image" src="https://user-images.githubusercontent.com/24925361/172837374-1ea9232e-9ad0-4504-bb3e-86c9c04a6393.png">
+
