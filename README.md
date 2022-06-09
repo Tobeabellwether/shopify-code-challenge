@@ -1,7 +1,5 @@
 # Shopify Code Challenge
 
-Technology stack:
-
 ![image](https://user-images.githubusercontent.com/24925361/172901050-b9b956ae-bd81-4386-b4ad-49c1b3e076f7.png)
 
 
