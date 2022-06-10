@@ -60,7 +60,7 @@ public class ItemService {
         else throw new IllegalStateException("item with id " + id + " can't or not need to be undeleted");
     }
 
-    public void unDeleteItems(List<Long> ids) {
+    public void undeleteItems(List<Long> ids) {
         for (Long id : ids) undeleteItem(id);
     }
 
